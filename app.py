@@ -277,5 +277,22 @@ def predict_batch():
         return jsonify({"error": f"Gagal memproses batch prediksi: {str(e)}"}), 500
 
 if __name__ == '__main__':
-    print("Menjalankan aplikasi Flask di http://127.0.0.1:5000")
-    app.run(debug=True, port=5000)
+    import sys
+    # Proteksi khusus jika dijalankan di platform Streamlit Cloud
+    is_streamlit = False
+    for arg in sys.argv:
+        if "streamlit" in arg.lower():
+            is_streamlit = True
+            break
+            
+    if is_streamlit:
+        print("Mendeteksi eksekusi melalui Streamlit. Mengalihkan ke streamlit_app...")
+        try:
+            import streamlit_app
+        except Exception as e:
+            print(f"Gagal memuat streamlit_app: {e}")
+    else:
+        print("Menjalankan aplikasi Flask di http://127.0.0.1:5000")
+        # Matikan debug reloader untuk stabilitas eksekusi multi-thread
+        app.run(debug=False, port=5000)
+
