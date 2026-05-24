@@ -1,0 +1,620 @@
+{
+    "model_graduation": {
+        "accuracy": 0.958,
+        "confusion_matrix": [
+            [
+                705,
+                16
+            ],
+            [
+                26,
+                253
+            ]
+        ],
+        "classes": [
+            "Tepat Waktu",
+            "Tidak Tepat Waktu"
+        ],
+        "classification_report": {
+            "Tepat Waktu": {
+                "precision": 0.9644322845417237,
+                "recall": 0.9778085991678225,
+                "f1-score": 0.9710743801652892,
+                "support": 721.0
+            },
+            "Tidak Tepat Waktu": {
+                "precision": 0.9405204460966543,
+                "recall": 0.9068100358422939,
+                "f1-score": 0.9233576642335767,
+                "support": 279.0
+            },
+            "accuracy": 0.958,
+            "macro avg": {
+                "precision": 0.952476365319189,
+                "recall": 0.9423093175050582,
+                "f1-score": 0.947216022199433,
+                "support": 1000.0
+            },
+            "weighted avg": {
+                "precision": 0.9577608816155494,
+                "recall": 0.958,
+                "f1-score": 0.9577614164203414,
+                "support": 1000.0
+            }
+        },
+        "feature_importance": [
+            [
+                "IPK",
+                0.3307272930955316
+            ],
+            [
+                "IPS_Terakhir",
+                0.3028042090318492
+            ],
+            [
+                "SKS_Lulus",
+                0.07780710245273187
+            ],
+            [
+                "Persentase_Kehadiran",
+                0.06921528484165688
+            ],
+            [
+                "Skor_Softskill",
+                0.02890010500066798
+            ],
+            [
+                "Jumlah_Sertifikasi",
+                0.026896273717565266
+            ],
+            [
+                "Aktivitas_Sosial_Skor",
+                0.0215919231068015
+            ],
+            [
+                "Dukungan_Keluarga",
+                0.02073625634390371
+            ],
+            [
+                "Pengalaman_Magang_Tidak",
+                0.019013055513464418
+            ],
+            [
+                "Pengalaman_Magang_Ya",
+                0.01733325800848607
+            ],
+            [
+                "Jumlah_Organisasi",
+                0.016892389318923073
+            ],
+            [
+                "Kualitas_Akses_Internet_Kurang",
+                0.011619047572160132
+            ],
+            [
+                "Kualitas_Akses_Internet_Cukup",
+                0.006327631858789624
+            ],
+            [
+                "Kondisi_Ekonomi_Menengah",
+                0.00576038164683299
+            ],
+            [
+                "Status_Pekerjaan_Tidak Bekerja",
+                0.005698377205172449
+            ]
+        ]
+    },
+    "model_career": {
+        "accuracy": 0.26,
+        "confusion_matrix": [
+            [
+                0,
+                0,
+                10,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                0,
+                4
+            ],
+            [
+                0,
+                13,
+                0,
+                0,
+                0,
+                0,
+                14,
+                2,
+                0,
+                0,
+                24,
+                17,
+                0,
+                1
+            ],
+            [
+                1,
+                0,
+                36,
+                30,
+                0,
+                0,
+                0,
+                9,
+                0,
+                0,
+                0,
+                5,
+                0,
+                5
+            ],
+            [
+                1,
+                0,
+                29,
+                28,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                9,
+                0,
+                5
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                9,
+                12,
+                0,
+                1,
+                21,
+                3,
+                0,
+                0,
+                4,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                6,
+                50,
+                0,
+                1,
+                30,
+                4,
+                0,
+                0,
+                8,
+                0
+            ],
+            [
+                0,
+                11,
+                0,
+                0,
+                0,
+                0,
+                8,
+                10,
+                0,
+                0,
+                18,
+                11,
+                0,
+                3
+            ],
+            [
+                0,
+                8,
+                8,
+                2,
+                1,
+                19,
+                8,
+                26,
+                8,
+                0,
+                9,
+                8,
+                3,
+                3
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                6,
+                40,
+                0,
+                1,
+                20,
+                1,
+                0,
+                0,
+                8,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                1,
+                22,
+                0,
+                0,
+                10,
+                2,
+                0,
+                0,
+                3,
+                0
+            ],
+            [
+                0,
+                22,
+                0,
+                0,
+                0,
+                0,
+                10,
+                0,
+                0,
+                0,
+                34,
+                17,
+                0,
+                2
+            ],
+            [
+                1,
+                11,
+                29,
+                15,
+                0,
+                0,
+                7,
+                2,
+                0,
+                0,
+                34,
+                16,
+                0,
+                5
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                8,
+                20,
+                0,
+                0,
+                12,
+                1,
+                0,
+                0,
+                6,
+                0
+            ],
+            [
+                0,
+                12,
+                9,
+                8,
+                0,
+                0,
+                5,
+                2,
+                0,
+                0,
+                10,
+                14,
+                0,
+                12
+            ]
+        ],
+        "classes": [
+            "Content Strategist",
+            "Data Analyst",
+            "Digital Marketing",
+            "E-Commerce",
+            "Human Resource",
+            "Industri Manajemen",
+            "Industri Teknologi",
+            "Lanjut Studi",
+            "Marketing",
+            "Pemerintahan",
+            "Software Developer",
+            "Startup",
+            "Wirausaha",
+            "Wirausaha Digital"
+        ],
+        "classification_report": {
+            "Content Strategist": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+            },
+            "Data Analyst": {
+                "precision": 0.16883116883116883,
+                "recall": 0.18309859154929578,
+                "f1-score": 0.17567567567567569,
+                "support": 71.0
+            },
+            "Digital Marketing": {
+                "precision": 0.2975206611570248,
+                "recall": 0.4186046511627907,
+                "f1-score": 0.34782608695652173,
+                "support": 86.0
+            },
+            "E-Commerce": {
+                "precision": 0.3333333333333333,
+                "recall": 0.3888888888888889,
+                "f1-score": 0.358974358974359,
+                "support": 72.0
+            },
+            "Human Resource": {
+                "precision": 0.2903225806451613,
+                "recall": 0.18,
+                "f1-score": 0.2222222222222222,
+                "support": 50.0
+            },
+            "Industri Manajemen": {
+                "precision": 0.3067484662576687,
+                "recall": 0.5050505050505051,
+                "f1-score": 0.3816793893129771,
+                "support": 99.0
+            },
+            "Industri Teknologi": {
+                "precision": 0.15384615384615385,
+                "recall": 0.13114754098360656,
+                "f1-score": 0.1415929203539823,
+                "support": 61.0
+            },
+            "Lanjut Studi": {
+                "precision": 0.48148148148148145,
+                "recall": 0.2524271844660194,
+                "f1-score": 0.33121019108280253,
+                "support": 103.0
+            },
+            "Marketing": {
+                "precision": 0.19801980198019803,
+                "recall": 0.2631578947368421,
+                "f1-score": 0.22598870056497175,
+                "support": 76.0
+            },
+            "Pemerintahan": {
+                "precision": 0.18181818181818182,
+                "recall": 0.05263157894736842,
+                "f1-score": 0.08163265306122448,
+                "support": 38.0
+            },
+            "Software Developer": {
+                "precision": 0.26356589147286824,
+                "recall": 0.4,
+                "f1-score": 0.3177570093457944,
+                "support": 85.0
+            },
+            "Startup": {
+                "precision": 0.1568627450980392,
+                "recall": 0.13333333333333333,
+                "f1-score": 0.14414414414414414,
+                "support": 120.0
+            },
+            "Wirausaha": {
+                "precision": 0.1875,
+                "recall": 0.1276595744680851,
+                "f1-score": 0.1518987341772152,
+                "support": 47.0
+            },
+            "Wirausaha Digital": {
+                "precision": 0.3,
+                "recall": 0.16666666666666666,
+                "f1-score": 0.21428571428571427,
+                "support": 72.0
+            },
+            "accuracy": 0.26,
+            "macro avg": {
+                "precision": 0.23713217613723422,
+                "recall": 0.2287618864466716,
+                "f1-score": 0.22106341429697177,
+                "support": 1000.0
+            },
+            "weighted avg": {
+                "precision": 0.25903295106203683,
+                "recall": 0.26,
+                "f1-score": 0.24703299585945984,
+                "support": 1000.0
+            }
+        },
+        "feature_importance": [
+            [
+                "IPK",
+                0.10989356462269426
+            ],
+            [
+                "IPS_Terakhir",
+                0.10641199614447297
+            ],
+            [
+                "SKS_Lulus",
+                0.0950085618982424
+            ],
+            [
+                "Persentase_Kehadiran",
+                0.09145786036074874
+            ],
+            [
+                "Aktivitas_Sosial_Skor",
+                0.06892282125568726
+            ],
+            [
+                "Jumlah_Sertifikasi",
+                0.06386966636839485
+            ],
+            [
+                "Skor_Softskill",
+                0.06211920522930077
+            ],
+            [
+                "Jumlah_Organisasi",
+                0.0529330094686956
+            ],
+            [
+                "Dukungan_Keluarga",
+                0.05037369037387046
+            ],
+            [
+                "Prodi_Manajemen",
+                0.04770747425382675
+            ],
+            [
+                "Prodi_Bisnis Digital",
+                0.0405120251552693
+            ],
+            [
+                "Prodi_Komputer",
+                0.0397887149080567
+            ],
+            [
+                "Kualitas_Akses_Internet_Cukup",
+                0.019775405944923993
+            ],
+            [
+                "Kondisi_Ekonomi_Menengah",
+                0.01791758385162927
+            ],
+            [
+                "Status_Pekerjaan_Tidak Bekerja",
+                0.017309367104373037
+            ]
+        ]
+    },
+    "eda": {
+        "ipk_by_grad": {
+            "Tepat Waktu": 3.4164493758668515,
+            "Tidak Tepat Waktu": 2.9096487455197133
+        },
+        "kehadiran_by_grad": {
+            "Tepat Waktu": 85.28377253814148,
+            "Tidak Tepat Waktu": 79.03512544802868
+        },
+        "magang_vs_grad": {
+            "Tidak": {
+                "Tepat Waktu": 0.6180637544273908,
+                "Tidak Tepat Waktu": 0.3819362455726092
+            },
+            "Ya": {
+                "Tepat Waktu": 0.7737447065940714,
+                "Tidak Tepat Waktu": 0.22625529340592862
+            }
+        },
+        "prodi_vs_career": {
+            "Bisnis Digital": {
+                "Content Strategist": 99,
+                "Data Analyst": 0,
+                "Digital Marketing": 432,
+                "E-Commerce": 358,
+                "Human Resource": 0,
+                "Industri Manajemen": 0,
+                "Industri Teknologi": 0,
+                "Lanjut Studi": 126,
+                "Marketing": 0,
+                "Pemerintahan": 0,
+                "Software Developer": 0,
+                "Startup": 272,
+                "Wirausaha": 0,
+                "Wirausaha Digital": 190
+            },
+            "Komputer": {
+                "Content Strategist": 0,
+                "Data Analyst": 354,
+                "Digital Marketing": 0,
+                "E-Commerce": 0,
+                "Human Resource": 0,
+                "Industri Manajemen": 0,
+                "Industri Teknologi": 304,
+                "Lanjut Studi": 203,
+                "Marketing": 0,
+                "Pemerintahan": 0,
+                "Software Developer": 426,
+                "Startup": 328,
+                "Wirausaha": 0,
+                "Wirausaha Digital": 170
+            },
+            "Manajemen": {
+                "Content Strategist": 0,
+                "Data Analyst": 0,
+                "Digital Marketing": 0,
+                "E-Commerce": 0,
+                "Human Resource": 250,
+                "Industri Manajemen": 496,
+                "Industri Teknologi": 0,
+                "Lanjut Studi": 188,
+                "Marketing": 380,
+                "Pemerintahan": 190,
+                "Software Developer": 0,
+                "Startup": 0,
+                "Wirausaha": 234,
+                "Wirausaha Digital": 0
+            }
+        },
+        "softskill_by_career": {
+            "Content Strategist": 6.191919191919192,
+            "Data Analyst": 6.454802259887006,
+            "Digital Marketing": 7.1157407407407405,
+            "E-Commerce": 7.391061452513966,
+            "Human Resource": 7.012,
+            "Industri Manajemen": 6.889112903225806,
+            "Industri Teknologi": 6.032894736842105,
+            "Lanjut Studi": 6.3810444874274665,
+            "Marketing": 6.984210526315789,
+            "Pemerintahan": 6.794736842105263,
+            "Software Developer": 6.7981220657277,
+            "Startup": 6.755,
+            "Wirausaha": 6.8760683760683765,
+            "Wirausaha Digital": 6.4527777777777775
+        },
+        "grad_distribution": {
+            "Tepat Waktu": 3605,
+            "Tidak Tepat Waktu": 1395
+        },
+        "career_distribution": {
+            "Startup": 600,
+            "Lanjut Studi": 517,
+            "Industri Manajemen": 496,
+            "Digital Marketing": 432,
+            "Software Developer": 426,
+            "Marketing": 380,
+            "Wirausaha Digital": 360,
+            "E-Commerce": 358,
+            "Data Analyst": 354,
+            "Industri Teknologi": 304,
+            "Human Resource": 250,
+            "Wirausaha": 234,
+            "Pemerintahan": 190,
+            "Content Strategist": 99
+        }
+    }
+}

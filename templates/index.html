@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduMining | Sistem Prediksi Kelulusan & Arah Karier Mahasiswa</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-graduation-cap brand-icon"></i>
+                <h2>Edu<span>Mining</span></h2>
+            </div>
+            <nav class="sidebar-menu">
+                <button class="menu-item active" data-tab="dashboard">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Dashboard & Statistik</span>
+                </button>
+                <button class="menu-item" data-tab="predict-single">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <span>Simulasi Mahasiswa</span>
+                </button>
+                <button class="menu-item" data-tab="predict-batch">
+                    <i class="fa-solid fa-file-csv"></i>
+                    <span>Analisis Massal (CSV)</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="footer-info">
+                    <p>Sistem Data Mining Modern</p>
+                    <small>Versi 1.0.0 &copy; 2026</small>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-title">
+                    <h1 id="page-title">Dashboard Analisis & Data Mining</h1>
+                    <p id="page-desc">Visualisasi statistik dataset dan metrik performa model klasifikasi Random Forest.</p>
+                </div>
+                <div class="header-profile">
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div class="profile-details">
+                        <h4>Staf Akademik</h4>
+                        <span>Administrator</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-container">
+                
+                <!-- TAB 1: DASHBOARD & STATS -->
+                <section id="tab-dashboard" class="tab-pane active">
+                    <!-- KPI Cards Grid -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-icon icon-blue"><i class="fa-solid fa-users"></i></div>
+                            <div class="kpi-data">
+                                <h3>5.000</h3>
+                                <p>Total Sampel Mahasiswa</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon icon-green"><i class="fa-solid fa-bullseye"></i></div>
+                            <div class="kpi-data">
+                                <h3 id="kpi-accuracy-grad">95.8%</h3>
+                                <p>Akurasi Prediksi Kelulusan</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon icon-violet"><i class="fa-solid fa-compass"></i></div>
+                            <div class="kpi-data">
+                                <h3 id="kpi-accuracy-career">26.0%</h3>
+                                <p>Akurasi Rekomendasi Karier</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Panel 1 -->
+                    <div class="charts-row">
+                        <div class="chart-card glass-panel flex-5">
+                            <div class="chart-header">
+                                <h4><i class="fa-solid fa-ranking-star"></i> Fitur Paling Berpengaruh (Kelulusan)</h4>
+                                <small>Signifikansi fitur yang diekstrak dari algoritma Random Forest</small>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chartFeatureGrad"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-card glass-panel flex-4">
+                            <div class="chart-header">
+                                <h4><i class="fa-solid fa-pie-chart"></i> Distribusi Kelulusan</h4>
+                                <small>Persentase kelulusan tepat waktu dalam dataset historis</small>
+                            </div>
+                            <div class="chart-body compact">
+                                <canvas id="chartDistributionGrad"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Panel 2 -->
+                    <div class="charts-row">
+                        <div class="chart-card glass-panel">
+                            <div class="chart-header">
+                                <h4><i class="fa-solid fa-chart-simple"></i> Rata-rata IPK vs Kelulusan</h4>
+                                <small>Perbandingan nilai IPK rata-rata berdasarkan ketepatan waktu kelulusan</small>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chartIpkGrad"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-card glass-panel">
+                            <div class="chart-header">
+                                <h4><i class="fa-solid fa-clipboard-user"></i> Pengaruh Magang terhadap Kelulusan</h4>
+                                <small>Hubungan riwayat magang mahasiswa dengan ketepatan kelulusan</small>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chartMagangGrad"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Career Distribution Chart Panel -->
+                    <div class="charts-row full-width">
+                        <div class="chart-card glass-panel">
+                            <div class="chart-header">
+                                <h4><i class="fa-solid fa-briefcase"></i> Distribusi Pilihan Arah Karier Mahasiswa</h4>
+                                <small>Sebaran karier sasaran di seluruh program studi (Komputer, Manajemen, Bisnis Digital)</small>
+                            </div>
+                            <div class="chart-body tall">
+                                <canvas id="chartCareerDistribution"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 2: SINGLE PREDICT SIMULATOR -->
+                <section id="tab-predict-single" class="tab-pane">
+                    <div class="simulator-layout">
+                        <!-- Form Panel -->
+                        <div class="form-container glass-panel">
+                            <div class="panel-header">
+                                <h3><i class="fa-solid fa-clipboard-list"></i> Formulir Profil Mahasiswa</h3>
+                                <p>Masukkan data mahasiswa untuk mensimulasikan hasil kelulusan dan rekomendasi karier.</p>
+                            </div>
+                            <form id="single-predict-form" class="simulator-form">
+                                
+                                <!-- Section A: Akademis -->
+                                <div class="form-section">
+                                    <h4 class="section-title"><i class="fa-solid fa-book-open"></i> A. Profil Akademik</h4>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="Prodi">Program Studi</label>
+                                            <select id="Prodi" required>
+                                                <option value="Komputer">Komputer</option>
+                                                <option value="Manajemen">Manajemen</option>
+                                                <option value="Bisnis Digital">Bisnis Digital</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="IPK">IPK Kumulatif (0.00 - 4.00)</label>
+                                            <input type="number" id="IPK" step="0.01" min="0.00" max="4.00" value="3.25" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="IPS_Terakhir">IPS Semester Terakhir</label>
+                                            <input type="number" id="IPS_Terakhir" step="0.01" min="0.00" max="4.00" value="3.30" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Persentase_Kehadiran">Persentase Kehadiran (%)</label>
+                                            <input type="number" id="Persentase_Kehadiran" min="0" max="100" value="90" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="SKS_Lulus">SKS Lulus (Total)</label>
+                                            <input type="number" id="SKS_Lulus" min="0" max="160" value="120" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Section B: Aktivitas & Portofolio -->
+                                <div class="form-section">
+                                    <h4 class="section-title"><i class="fa-solid fa-award"></i> B. Kompetensi & Portofolio</h4>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="Pengalaman_Magang">Pengalaman Magang</label>
+                                            <select id="Pengalaman_Magang" required>
+                                                <option value="Ya">Pernah Magang (Ya)</option>
+                                                <option value="Tidak">Tidak Pernah Magang (Tidak)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Jumlah_Sertifikasi">Jumlah Sertifikasi</label>
+                                            <input type="number" id="Jumlah_Sertifikasi" min="0" max="20" value="2" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Jumlah_Organisasi">Jumlah Organisasi diikuti</label>
+                                            <input type="number" id="Jumlah_Organisasi" min="0" max="10" value="1" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="Skor_Softskill">Skor Softskill (1 - 10)</label>
+                                            <div class="slider-container">
+                                                <input type="range" id="Skor_Softskill" min="1" max="10" value="7" class="slider">
+                                                <span class="slider-value" id="val-softskill">7</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Aktivitas_Sosial_Skor">Skor Aktivitas Sosial (1 - 10)</label>
+                                            <div class="slider-container">
+                                                <input type="range" id="Aktivitas_Sosial_Skor" min="1" max="10" value="6" class="slider">
+                                                <span class="slider-value" id="val-sosial">6</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Section C: Pendukung Eksternal -->
+                                <div class="form-section">
+                                    <h4 class="section-title"><i class="fa-solid fa-circle-info"></i> C. Sosial & Pendukung Eksternal</h4>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="Kondisi_Ekonomi">Kondisi Ekonomi Keluarga</label>
+                                            <select id="Kondisi_Ekonomi" required>
+                                                <option value="Menengah">Menengah</option>
+                                                <option value="Tinggi">Tinggi</option>
+                                                <option value="Rendah">Rendah</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Kualitas_Akses_Internet">Kualitas Akses Internet</label>
+                                            <select id="Kualitas_Akses_Internet" required>
+                                                <option value="Cukup">Cukup</option>
+                                                <option value="Baik">Baik</option>
+                                                <option value="Kurang">Kurang</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="Status_Pekerjaan">Status Pekerjaan Mahasiswa</label>
+                                            <select id="Status_Pekerjaan" required>
+                                                <option value="Tidak Bekerja">Tidak Bekerja</option>
+                                                <option value="Part-time">Kerja Paruh Waktu (Part-time)</option>
+                                                <option value="Freelance">Kerja Lepas (Freelance)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Dukungan_Keluarga">Skor Dukungan Keluarga (1 - 5)</label>
+                                            <div class="slider-container">
+                                                <input type="range" id="Dukungan_Keluarga" min="1" max="5" value="4" class="slider">
+                                                <span class="slider-value" id="val-keluarga">4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-large btn-glow">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Jalankan Prediksi Data Mining
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Result Panel -->
+                        <div class="result-container glass-panel" id="prediction-result-panel">
+                            <!-- Placeholder View -->
+                            <div class="result-placeholder" id="result-placeholder">
+                                <div class="placeholder-icon">
+                                    <i class="fa-solid fa-gears fa-spin"></i>
+                                </div>
+                                <h3>Menunggu Simulasi</h3>
+                                <p>Isi formulir profil di sebelah kiri dan klik tombol prediksi untuk melihat hasil analisis kelulusan dan karier mahasiswa.</p>
+                            </div>
+
+                            <!-- Real Result View (Hidden initially) -->
+                            <div class="result-content hidden" id="result-content">
+                                <div class="panel-header text-center">
+                                    <h3><i class="fa-solid fa-square-poll-vertical"></i> Hasil Prediksi Profil</h3>
+                                    <span class="badge" id="result-timestamp">Baru Saja</span>
+                                </div>
+
+                                <!-- Graduation Section -->
+                                <div class="result-block graduation-block">
+                                    <h4>Kelulusan Tepat Waktu</h4>
+                                    <div class="grad-meter-wrapper">
+                                        <div class="grad-circle">
+                                            <div class="grad-circle-inner">
+                                                <span class="percent-val" id="grad-probability-percent">92%</span>
+                                                <span class="percent-label">Probabilitas</span>
+                                            </div>
+                                        </div>
+                                        <div class="grad-status-details">
+                                            <div class="status-badge" id="grad-status-badge">Tepat Waktu</div>
+                                            <p id="grad-status-text">Mahasiswa diprediksi lulus sesuai dengan masa studi reguler 4 tahun (8 semester).</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Career Match Section -->
+                                <div class="result-block career-block">
+                                    <h4>Rekomendasi Arah Karier Utama</h4>
+                                    <div class="career-top-card">
+                                        <div class="career-icon">
+                                            <i class="fa-solid fa-laptop-code"></i>
+                                        </div>
+                                        <div class="career-info">
+                                            <h3 id="top-career-name">Software Developer</h3>
+                                            <p>Kesesuaian profil mahasiswa terhadap kompetensi karier ini.</p>
+                                            <div class="progress-bar-wrapper">
+                                                <div class="progress-bar-fill" id="top-career-progress" style="width: 75%"></div>
+                                            </div>
+                                            <span class="score-tag" id="top-career-score">75.4% Match</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <h5>Karier Alternatif Lainnya</h5>
+                                    <div class="alternative-careers" id="alt-careers-list">
+                                        <!-- Alt careers injected here by JS -->
+                                    </div>
+                                </div>
+
+                                <!-- Recommendations Section -->
+                                <div class="result-block recommendations-block">
+                                    <h4>Rekomendasi Taktis & Tindakan</h4>
+                                    <ul class="recommendation-list" id="recommendations-list">
+                                        <!-- Recommendations injected here by JS -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 3: BATCH PREDICT UPLOADER -->
+                <section id="tab-predict-batch" class="tab-pane">
+                    <div class="batch-layout">
+                        <!-- Uploader Panel -->
+                        <div class="uploader-container glass-panel">
+                            <div class="panel-header">
+                                <h3><i class="fa-solid fa-file-arrow-up"></i> Unggah File CSV</h3>
+                                <p>Proses prediksi kelulusan dan karier mahasiswa untuk ribuan mahasiswa sekaligus secara cepat.</p>
+                            </div>
+                            
+                            <!-- Drag and Drop Box -->
+                            <div class="drop-zone" id="drop-zone">
+                                <div class="drop-zone-icon">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <span class="drop-zone-prompt">Tarik dan letakkan file CSV Anda di sini atau klik untuk menjelajah</span>
+                                <input type="file" id="batch-file-input" accept=".csv" class="drop-zone-input">
+                            </div>
+
+                            <!-- CSV Schema Details -->
+                            <div class="schema-info">
+                                <h4><i class="fa-solid fa-triangle-exclamation"></i> Panduan Format Berkas CSV</h4>
+                                <p>Agar proses penambangan data berhasil, berkas CSV Anda harus memiliki kolom-kolom persis berikut:</p>
+                                <div class="schema-tags">
+                                    <span>Prodi</span><span>IPK</span><span>IPS_Terakhir</span><span>Persentase_Kehadiran</span>
+                                    <span>SKS_Lulus</span><span>Jumlah_Organisasi</span><span>Kondisi_Ekonomi</span>
+                                    <span>Kualitas_Akses_Internet</span><span>Pengalaman_Magang</span><span>Jumlah_Sertifikasi</span>
+                                    <span>Aktivitas_Sosial_Skor</span><span>Status_Pekerjaan</span><span>Dukungan_Keluarga</span>
+                                    <span>Skor_Softskill</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress / Download Panel -->
+                        <div class="batch-results-container glass-panel hidden" id="batch-results-panel">
+                            <div class="panel-header text-center">
+                                <h3><i class="fa-solid fa-circle-check"></i> Berkas Berhasil Dianalisis</h3>
+                                <p id="batch-file-name-label">Nama_Berkas.csv</p>
+                            </div>
+
+                            <div class="batch-summary-stats">
+                                <div class="batch-stat-card">
+                                    <span class="stat-num" id="batch-total-rows">0</span>
+                                    <span class="stat-label">Total Baris Diproses</span>
+                                </div>
+                                <div class="batch-stat-card">
+                                    <span class="stat-num status-tepat" id="batch-on-time-rows">0</span>
+                                    <span class="stat-label">Diprediksi Tepat Waktu</span>
+                                </div>
+                                <div class="batch-stat-card">
+                                    <span class="stat-num status-lambat" id="batch-delayed-rows">0</span>
+                                    <span class="stat-label">Risiko Terlambat</span>
+                                </div>
+                            </div>
+
+                            <div class="batch-download-block">
+                                <p>Sistem telah menambang data mahasiswa dan menghasilkan prediksi kelulusan beserta rekomendasi karier utama dan alternatif untuk masing-masing baris mahasiswa.</p>
+                                <button id="btn-download-batch" class="btn btn-success btn-large btn-glow">
+                                    <i class="fa-solid fa-file-export"></i> Unduh Hasil Analisis (.CSV)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom Script JS -->
+    <script src="/static/script.js"></script>
+</body>
+</html>
